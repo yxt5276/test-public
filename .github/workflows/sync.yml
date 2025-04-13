@@ -27,7 +27,7 @@ jobs:
 
       - name: Debug permissions
         env:
-          TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
+          TOKEN: ${{ secrets.PUBLIC_TOKEN }}
         run: |
           curl -i -H "Authorization: token $TOKEN" https://api.github.com/repos/yxt5276/test-public
 
