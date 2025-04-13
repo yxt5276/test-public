@@ -18,6 +18,8 @@ jobs:
         run: |
           AUTHOR_NAME="$(git log -1 --pretty=format:'%an')"
           AUTHOR_EMAIL="$(git log -1 --pretty=format:'%ae')"
+          echo "$AUTHOR_NAME"
+          echo "$AUTHOR_EMAIL"
           git config --global user.name "$AUTHOR_NAME"
           git config --global user.email "$AUTHOR_EMAIL"
           
