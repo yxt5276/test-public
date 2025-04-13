@@ -1,0 +1,27 @@
+name: Sync to Public Repo
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout private repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Important to preserve full history
+
+      - name: Push to public repo
+        run: |
+          AUTHOR_NAME="$(git log -1 --pretty=format:'%an')"
+          AUTHOR_EMAIL="$(git log -1 --pretty=format:'%ae')"
+          git config --global user.name "$AUTHOR_NAME"
+          git config --global user.email "$AUTHOR_EMAIL"
+          
+          git remote add public https://x-access-token:${{ secrets.PUBLIC_TOKEN }}@github.com/yxt5276/test-public.git
+
+          git push --force public HEAD:main
+
