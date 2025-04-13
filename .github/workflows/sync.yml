@@ -23,6 +23,7 @@ jobs:
           git config --global user.name "$AUTHOR_NAME"
           git config --global user.email "$AUTHOR_EMAIL"
           
+          git remote remove origin || true
           git remote add public https://x-access-token:${{ secrets.PUBLIC_TOKEN }}@github.com/yxt5276/test-public.git
 
           git push --force public HEAD:main
