@@ -21,9 +21,15 @@ jobs:
 
       - name: Set remote and push using PAT
         env:
-          TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
+          TOKEN: ${{ secrets.PUBLIC__TOKEN }}
         run: |
           git remote add public https://x-access-token:$TOKEN@github.com/yxt5276/test-public.git
+
+      - name: Debug permissions
+        env:
+          TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
+        run: |
+          curl -i -H "Authorization: token $TOKEN" https://api.github.com/repos/yxt5276/test-public
 
       - name: Debug Git Remotes
         run: git remote -v
